@@ -3,18 +3,19 @@ package com.pedrocaua.services;
 import com.pedrocaua.exception.ResourceNotFoundException;
 import com.pedrocaua.model.Person;
 import com.pedrocaua.repository.PersonRepository;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
 import java.util.concurrent.atomic.AtomicLong;
-import java.util.logging.Logger;
 
 @Service
 public class PersonServices {
 
     private final AtomicLong counter = new AtomicLong();     //simula ID automatico (como se fosse um bando de dados)
-    private Logger logger = Logger.getLogger(PersonServices.class.getName());     //Usados para logs, boas práticas de backend
+    private Logger logger = LoggerFactory.getLogger(PersonServices.class.getName());     //Usados para logs, boas práticas de backend
 
     @Autowired
     PersonRepository repository;
