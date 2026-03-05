@@ -1,12 +1,11 @@
 package com.pedrocaua.services;
 
-import com.pedrocaua.data.dto.v1.PersonDTO;
-import com.pedrocaua.data.dto.v2.PersonDTOV2;
+import com.pedrocaua.data.dto.PersonDTO;
 import com.pedrocaua.exception.ResourceNotFoundException;
 import static com.pedrocaua.mapper.ObjectMapper.parseListObjects;
 import static com.pedrocaua.mapper.ObjectMapper.parseObject;
 
-import com.pedrocaua.mapper.custom.PersonMapper;
+//import com.pedrocaua.mapper.custom.PersonMapper;
 import com.pedrocaua.model.Person;
 import com.pedrocaua.repository.PersonRepository;
 import org.slf4j.Logger;
@@ -26,8 +25,8 @@ public class PersonServices {
     @Autowired
     PersonRepository repository;
 
-    @Autowired
-    PersonMapper converter;
+    /*@Autowired
+    PersonMapper converter;*/
 
     public List<PersonDTO> findAll() {
         logger.info("Finding all persons");
@@ -47,13 +46,6 @@ public class PersonServices {
         var entity = parseObject(person, Person.class);
 
         return parseObject(repository.save(entity), PersonDTO.class);
-    }
-
-    public PersonDTOV2 createV2(PersonDTOV2 person){
-        logger.info("Creating one person V2!");
-        var entity = converter.convertDTOToEntity(person);
-
-        return converter.convertEntityToDTO(repository.save(entity));
     }
 
     public PersonDTO update(PersonDTO person){
